@@ -1,8 +1,8 @@
 # Telegram Bot utilisant OPENAI API
 
 ### Résultat du projet après exécution :
-![](imgs/1.png)
-![](imgs/2.png)
-![](imgs/3.png)
-![](imgs/4.png)
-![](imgs/5.png)
+![](img/1.png)
+![](img/2.png)
+![](img/3.png)
+![](img/4.png)
+![](img/5.png)
