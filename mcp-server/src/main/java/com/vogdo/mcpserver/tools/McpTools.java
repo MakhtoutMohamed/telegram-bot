@@ -10,6 +10,7 @@ import java.util.Locale;
 @Component
 public class McpTools {
 
+    // simple db pour le test
     private final List<Employee> employees = List.of(
             new Employee("Hassan", "fadli", "hfad@gmail.com", 12300, 4),
             new Employee("Mohamed", "fadli", "mfad@gmail.com", 34000, 1),

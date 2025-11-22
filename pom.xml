@@ -45,7 +45,7 @@
             <artifactId>telegrambots-spring-boot-starter</artifactId>
             <version>6.9.7.1</version>
         </dependency>
-<!--___________________________________________________-->
+        <!--___________________________________________________-->
         <!-- RAG : lecteurs de documents (PDF, txt, etc.) -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
@@ -68,7 +68,7 @@
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-advisors-vector-store</artifactId>
         </dependency>
-<!--___________________________________________________-->
+        <!--___________________________________________________-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

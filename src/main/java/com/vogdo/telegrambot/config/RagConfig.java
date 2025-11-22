@@ -18,30 +18,29 @@ import java.util.List;
 @Configuration
 public class RagConfig {
 
-    // Vector store en mémoire (lié au modèle d'embedding OpenAI)
     @Bean
     public VectorStore vectorStore(EmbeddingModel embeddingModel) {
         return SimpleVectorStore.builder(embeddingModel).build();
     }
 
-    // Chargement des documents RH au démarrage de l'appli
+    // charger docs
     @Bean
     public CommandLineRunner loadHrDocuments(VectorStore vectorStore) {
         return args -> {
             var resource = new ClassPathResource("docs/rh.pdf");
 
-            // 1. Lire le PDF
+            // pdf
             DocumentReader pdfReader = new PagePdfDocumentReader(resource);
             List<Document> documents = pdfReader.read();
 
-            // 2. Découper en petits chunks (pour de meilleurs embeddings)
+            // mini chunks
             TextSplitter splitter = new TokenTextSplitter();
             List<Document> splitDocs = splitter.split(documents);
 
-            // 3. Stocker dans le vector store
+            // ajouter dans vector store
             vectorStore.add(splitDocs);
 
-            System.out.println("✅ RAG: " + splitDocs.size() + " chunks RH chargés dans le VectorStore.");
+            System.out.println("RAG: " + splitDocs.size() + " chunks rh chargés dans le VectorStore");
         };
     }
 }

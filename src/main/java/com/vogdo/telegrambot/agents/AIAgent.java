@@ -7,10 +7,10 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
-
+import org.springframework.ai.content.Media;
+import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.util.MimeTypeUtils;
 import java.util.Arrays;
-import java.util.Vector;
 
 @Component
 public class AIAgent {
@@ -22,11 +22,11 @@ public class AIAgent {
                    ToolCallbackProvider tools,
                    VectorStore vectorStore) {
 
-        Arrays.stream(tools.getToolCallbacks()).forEach(toolCallback -> {
+        /*Arrays.stream(tools.getToolCallbacks()).forEach(toolCallback -> {
             System.out.println("------------------------------------");
             System.out.println(toolCallback.getToolDefinition());
             System.out.println("------------------------------------");
-        });
+        });*/
         this.chatClient = builder
                 .defaultSystem("""
                         Tu es un assistant RH pour une petite entreprise.
@@ -64,5 +64,28 @@ public class AIAgent {
                 .call()
                 .content();
     }
+
+    //(texte + image)
+    public String askAgent(UserMessage userMessage) {
+        return this.chatClient
+                .prompt()
+                .messages(userMessage)
+                .call()
+                .content();
+    }
+
+    //image
+    /*public String askWithImage(String query, byte[] imageData) {
+        UserMessage userMessage = new UserMessage(
+                query,
+                new Media(MimeTypeUtils.IMAGE_JPEG, imageData)
+        );
+
+        return chatClient
+                .prompt()
+                .messages(userMessage)
+                .call()
+                .content();
+    }*/
 
 }
